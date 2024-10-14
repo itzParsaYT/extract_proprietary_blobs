@@ -103,10 +103,10 @@ jobs:
         bash extract-files.sh ${GITHUB_WORKSPACE}/workspace/firmware-dump/
         echo "Done extracting and making files."
         echo "Pushing as repository now."
-        
+        rm -rf ${GITHUB_WORKSPACE}/workspace/firmware-dump
     - name: Push to Github as Repository
       run: |
-        rm -rf workspace/firmware-dump
+        
         cd workspace/android/vendor/${{ env.DVN }}/${{ env.DCN }}
         git init
         git branch -M ${{ env.DCN }}
