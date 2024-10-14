@@ -106,10 +106,15 @@ jobs:
         rm -rf ${GITHUB_WORKSPACE}/workspace/firmware-dump
     - name: Push to Github as Repository
       run: |
-        
+
+        sudo apt-get update && sudo apt-get install -y git-lfs
         cd workspace/android/vendor/${{ env.DVN }}/${{ env.DCN }}
         git init
+        git lfs install
         git branch -M ${{ env.DCN }}
+        cd workspace/android/vendor/${{ env.DVN }}/${{ env.DCN }}
+        git lfs track "proprietary/vendor/lib64/libxmi_high_dynamic_range_cdsp.so"
+        git add .gitattributes
         git add .
         git commit -s -m "${{ env.DCN }}: proprietary: initial vendor tree"
         gh repo create ${{ env.TR }} --public --description="Vendor tree for ${{ env.DCN }}." --source=. --remote=origin --push
