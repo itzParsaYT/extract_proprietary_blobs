@@ -112,7 +112,6 @@ jobs:
         git init
         git lfs install
         git branch -M ${{ env.DCN }}
-        cd workspace/android/vendor/${{ env.DVN }}/${{ env.DCN }}
         git lfs track "proprietary/vendor/lib64/libxmi_high_dynamic_range_cdsp.so"
         git add .gitattributes
         git add .
